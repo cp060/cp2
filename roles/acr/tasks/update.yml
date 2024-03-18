@@ -1,8 +1,0 @@
----
-- hosts: vm_azure
-  #become: true
-  tasks:
-  - name: Update repo
-    package:
-      name: podman
-      state: present
