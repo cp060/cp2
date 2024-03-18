@@ -1,0 +1,19 @@
+---
+- hosts: localhost
+  tasks:
+  - name: GET AKS credentials
+    ansible.builtin.command:
+      cmd: az aks get-credentials --resource-group Roni-rg --name Roni-aks --overwrite-existing
+  - name: Create a k8s namespace
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      name: casop2
+      api_version: v1
+      kind: Namespace
+      state: present
+  - name: Create deploy
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      state: present
+      src: ../files/app2.yml
+      namespace: casop2

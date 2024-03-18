@@ -1,0 +1,9 @@
+---
+- hosts: vm_azure
+  become: true
+  tasks:
+  - name: installing podman
+    package:
+      name: podman
+      state: present
+      update_cache: yes

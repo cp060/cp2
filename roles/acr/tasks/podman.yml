@@ -1,0 +1,32 @@
+---
+- hosts: vm_azure
+  vars_files:
+  - ../vars/main.yml 
+  tasks:
+  - name: Pull an image for a specific repo
+    containers.podman.podman_image:
+      name: docker.io/httpd
+  - name: TAG to push acr
+    containers.podman.podman_tag:
+      image: docker.io/httpd
+      target_names:
+        - roni_casopractico2
+  - name: Build and push an image using username and password
+    containers.podman.podman_image:
+      name: roni_casopractico2
+      push: true
+      username: '{{ username }}'
+      password: '{{ password  }}'
+      push_args:
+        dest: '{{ dest }}'
+  - name: ACR LOGIN
+    containers.podman.podman_login:
+      username: '{{ username }}'
+      password: '{{ password  }}'
+      registry: '{{ dest }}'
+  - name: Run container
+    containers.podman.podman_container:
+      name: roni_casopractico2
+      image: '{{ dest }}/roni_casopractico2'
+      state: started
+      ports: "8080:80"
