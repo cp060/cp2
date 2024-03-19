@@ -168,22 +168,22 @@ resource "azurerm_kubernetes_cluster" "aks" {
   ]
 }
 
-resource "kubernetes_persistent_volume" "example" {
-  metadata {
-    name = "terraform-example"
-  }
-  spec {
-    capacity = {
-      storage = "2Gi"
-    }
-    access_modes = ["ReadWriteMany"]
-    persistent_volume_source {
-      vsphere_volume {
-        volume_path = "/mnt/tmp"
-      }
-    }
-  }
-}
+#resource "kubernetes_persistent_volume" "RONALDINHO" {
+#  metadata {
+#    name = "terraform-RONALDINHO"
+#  }
+#  spec {
+#    capacity = {
+#      storage = "2Gi"
+#    }
+#    access_modes = ["ReadWriteMany"]
+#    persistent_volume_source {
+#      vsphere_volume {
+#        volume_path = "/mnt/tmp"
+#      }
+#    }
+#  }
+#}
 
 #resource "azurerm_role_assignment" "acr_public_access" {
 #  scope                = azurerm_container_registry.acr.id
