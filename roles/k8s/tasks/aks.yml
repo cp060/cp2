@@ -7,7 +7,7 @@
   - name: Create a k8s namespace
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config
-      name: casop2
+      name: reto2
       api_version: v1
       kind: Namespace
       state: present
@@ -15,5 +15,5 @@
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config
       state: present
-      src: ../files/app2.yml
-      namespace: casop2
+      src: ../files/app.yml
+      namespace: reto2
